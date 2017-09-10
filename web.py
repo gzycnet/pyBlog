@@ -11,6 +11,7 @@ import datetime
 
 from bson.objectid import ObjectId
 import hashlib
+import uuid
 
 
 from databaseCase import *
@@ -539,11 +540,29 @@ class LogoutHandler(tornado.web.RequestHandler):
         self.redirect('/')
 
 
+#文件上传（CKEditor使用）
+class UploadHandler(BaseHandler):
+  def post(self):
+    imgfile = self.request.files.get('upload')
+    callback = self.get_argument('CKEditorFuncNum')
+    imgPath = []
+    for img in imgfile:
+        file_suffix = img['filename'].split(".")[-1]
+        file_name=str(uuid.uuid1())+"."+file_suffix
+        with open('./static/uploads/' + file_name, 'wb') as f:
+            f.write(img['body'])
+
+        imgPath.append(file_name)
+
+
+    self.write('<script type="text/javascript">window.parent.CKEDITOR.tools.callFunction('+callback+',"/static/uploads/'+imgPath[0]+'","")</script>')
+
+
 if __name__ == "__main__":
     tornado.options.parse_command_line()
     settings = {
         "cookie_secret": "bZJc2sWbQLKos6GkHn/VB9oXwQt8S0R0kRvJ5/xJ89E=",
-        "xsrf_cookies": True,
+        "xsrf_cookies": False,
         'login_url':'/account/login'
     }
     app = tornado.web.Application(
@@ -559,6 +578,7 @@ if __name__ == "__main__":
                   (r'/account/login$', LoginHandler),
                   (r'/account/logout$', LogoutHandler),
                   (r'/admin', AdminHandler),
+                  (r'/admin/upload/', UploadHandler),
                   (r'/auditUser/', AuditUserHandler),
                   (r".*", BaseHandler),
                   ],
