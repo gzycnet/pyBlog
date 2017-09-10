@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block header %}
+    <title>作者{{ userInfo['account'] }}资料 </title>
+{% end %}
+
+{% block main %}
+
+        <form action="" method="post" enctype="multipart/form-data">
+    {% raw xsrf_form_html() %}
+    {% if info is None %}
+    <p>姓名：<input type="text" name="name"></p>
+    <p>个人主页：<input type="text" name="website"></p>
+    <p>头像：<input type="text" name="avatar"></p>
+    <p>电话：<input type="tel" name="tel"></p>
+    <div>简介：<textarea  name="introduction">
+
+    </textarea></div>
+    {% else %}
+    <p>姓名：<input type="text" name="name" value="{{ info['name'] }}"></p>
+    <p>个人主页：<input type="text" name="website" value="{{ info['website'] }}"></p>
+    <p>头像：<input type="text" name="avatar" value="{{ info['avatar'] }}"></p>
+    <p>电话：<input type="tel" name="tel" value="{{ info['tel'] }}"></p>
+    <div>简介：<textarea  name="introduction">
+{{ info['introduction'] }}
+    </textarea></div>
+    {% end %}
+
+    <button type="submit">提交</button>
+
+</form>
+
+        {% end %}

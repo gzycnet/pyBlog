@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+        {% block header %}
+    <title>{{user}}发布任务</title>
+        <script src='{{ static_url("libs/ckeditor/ckeditor.js") }}'></script>
+{% end %}
+
+{% block main %}
+
+<form action="" method="post" enctype="multipart/form-data">
+    {% raw xsrf_form_html() %}
+        <p>任务名称：<input type="text" class="form-control" name="name"/></p>
+        <p>计划数量：<input type="text" class="form-control" name="count"/></p>
+        <p>总预算：<input type="text" class="form-control" name="money"/></p>
+        <p>时间：<input type="radio" class="" name="date" checked value="1" /> 长期 <input type="radio" name="date" value="2" />结束时间： <input type="text" disabled name="endDate"/></p>
+        <p>数量限制 <input type="radio" name="amount" checked value="1" /> 不限 <input type="radio" name="amount" value="2" />设置区间 <input type="text" disabled name="min"/>－<input type="text" disabled name="max"/></p>
+    <div><span>任务描述：</span>
+        <textarea class="form-control" name="description" ></textarea></div>
+    <div><span>任务要求：</span>
+        <textarea class="form-control" name="content" id="content"></textarea></div>
+    <p>上传资料：<span><a href="#">+</a></span></p>
+    <ul>
+        <li><input type="file" name="attachment"/></li>
+        </ul>
+        <p><button type="submit" class="btn btn-primary">提交</button></p>
+    </form>
+
+{% end %}
+
+{% block footer %}
+<script>
+    CKEDITOR.replace( 'content' );
+</script>
+{% end %}

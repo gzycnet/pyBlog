@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+        {% block header %}
+    <title>Home</title>
+{% end %}
+
+        {% block main %}
+
+            <p>{{ greeting }}</p>
+    <p>总共有 {{ articles.count() }} 篇文章</p>
+    {% for a in articles%}
+    <p>{{ a['author'] }}</p>
+    <p>{{ a['date'] }}</p>
+    <p>{{ a['title'] }}</p>
+    {% end %}
+
+    <br/>
+    <br/>
+    <a href="/list" >查看文章>> </a>
+        {% end %}

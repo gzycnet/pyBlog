@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+
+        {% block header %}
+    <title>{{ userInfo['account'] }}发布文章</title>
+        <script src='{{ static_url("libs/ckeditor/ckeditor.js") }}'></script>
+
+{% end %}
+
+{% block main %}
+        <div class="row">
+            <div class="col-md-9">
+                <form action="" method="post">
+    {% raw xsrf_form_html() %}
+                    {% if article['cate'] %}
+                    <input type="hidden" name="cate" value="{{ article['cate']['id'] }}"/>
+                    {% else %}
+                    <input type="hidden" name="cate" value="None"/>
+                    {% end %}
+                    <input type="hidden" name="id" value="{{ article['_id'] }}"/>
+
+        <p>标题：<input type="text" class="form-control" name="title" value="{{ article['title'] }}"/></p>
+    <div><span>描述：</span>
+        <textarea name="description" class="form-control">{{ article['description'] }}</textarea></div>
+    <div><span>正文内容：</span>
+        <textarea name="content" id="content" rows="5" class="form-control" >{{ article['content'] }}</textarea></div>
+    <p>标签
+        <input type="text" class="form-control" name="tags" value="{% for t in article['tags'] %}{{ t }},{% end %}"/>
+        <input type="hidden" name="oldTags" value="{% for t in article['tags'] %}{{ t }},{% end %}"/>
+    </p>
+        <p><button type="submit" class="btn btn-primary" id="addArticle">提交</button></p>
+    </form>
+            </div>
+            <div class="col-md-3">
+                <h3>选择任务</h3>
+                <div>
+                    <select id="postCate" class="form-control">
+                        <option value="None">--- 请选择任务 ---</option>
+                        {% for t in cateList %}
+                        {% if article['cate'] != None %}
+                        {% if article['cate']['name'] == t['name'] %}
+                        <option value="{{ t['_id'] }}" selected>{{ t['name'] }}</option>
+                        {% else %}
+                        <option value="{{ t['_id'] }}">{{ t['name'] }}</option>
+                        {% end %}
+                        {% else %}
+                        <option value="{{ t['_id'] }}">{{ t['name'] }}</option>
+                        {% end%}
+
+                        {% end %}
+
+                    </select>
+
+
+                </div>
+
+
+
+
+                    {% if article.has_key('memoList') and article['memoList'] %}
+                <h3>审核意见</h3>
+                <div>
+                    {% for m in article['memoList'] %}
+
+                    <div class="bs-callout bs-callout-danger">
+                        <h4>{{ m['account'] }}</h4>
+
+                        <p>{{ m['memo'] }}</p>
+                        <span>{{ m['date'] }}</span>
+                      </div>
+
+                    {% end %}
+                    </div>
+                    {% end %}
+
+
+            </div>
+        </div>
+
+
+{% end %}
+
+{% block footer %}
+<script>
+    CKEDITOR.replace( 'content' );
+
+    //选择任务
+    $('#postCate').change(function(){
+        var t = $(this).val();
+        $('input[name="cate"]').val(t);
+
+        console.log(t);
+        if(t!='None'){
+            $('#addArticle').html('提交');
+        }else{
+            $('#addArticle').html('保存草稿');
+        }
+    });
+</script>
+{% end %}

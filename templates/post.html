@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+        {% block header %}
+    <title>{{user}}发布文章</title>
+        <script src='{{ static_url("libs/ckeditor/ckeditor.js") }}'></script>
+
+{% end %}
+
+{% block main %}
+        <div class="row">
+            <div class="col-md-9">
+                <form action="" method="post">
+    {% raw xsrf_form_html() %}
+                    <input type="hidden" name="cate" value="None"/>
+
+        <p>标题：<input type="text" class="form-control" name="title"/></p>
+    <div><span>描述：</span>
+        <textarea name="description" class="form-control"></textarea></div>
+    <div><span>正文内容：</span>
+        <textarea name="content" id="content" rows="5" class="form-control" ></textarea></div>
+    <p>标签
+        <input type="text" class="form-control" name="tags"/></p>
+        <p><button type="submit" class="btn btn-primary" id="addArticle">保存草稿</button></p>
+    </form>
+            </div>
+            <div class="col-md-3">
+                <h3>选择分类</h3>
+                <div>
+                    <select id="postCate" class="form-control">
+                        <option value="None">--- 请选择分类 ---</option>
+                        {% for t in cateList %}
+                        <option value="{{ t['_id'] }}">{{ t['name'] }}</option>
+                        {% end %}
+                    </select>
+                </div>
+            </div>
+        </div>
+
+
+{% end %}
+
+{% block footer %}
+<script>
+    CKEDITOR.replace( 'content' );
+
+    //选择任务
+    $('#postCate').change(function(){
+        var t = $(this).val();
+        $('input[name="cate"]').val(t);
+
+        console.log(t);
+        if(t!='None'){
+            $('#addArticle').html('提交');
+        }else{
+            $('#addArticle').html('保存草稿');
+        }
+    });
+</script>
+{% end %}

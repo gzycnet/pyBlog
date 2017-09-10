@@ -1,0 +1,18 @@
+
+1、创建数据库：
+use pyblog;
+
+2、创建基础数据表：
+db.createCollection("user");
+db.createCollection("category");
+db.createCollection("post");
+db.createCollection("tags");
+
+3、插入管理员数据：
+#用于审核
+db.user.insert({"status" : "2", "isSupper" : true, "account" : "admin@admin.com", "lastLoginDate" : ISODate("2017-05-14T22:14:07.647Z"), "password" : "21232f297a57a5a743894a0e4a801fc3", "type" : "2", "regDate" : ISODate("2017-05-14T22:14:07.647Z"), "isActive" : true, "username" : "admin", "mobile" : "18*******34" });
+#分类
+db.category.insert({"name" : "用户", "showMenu" : 1, "showSide" : 1})
+
+
+

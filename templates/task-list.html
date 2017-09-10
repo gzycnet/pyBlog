@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+        {% block header %}
+    <title>Article List</title>
+{% end %}
+
+        {% block main %}
+<div class="" style="margin: 100px auto;padding: 30px;">
+
+    <div id="taskFilter"></div>
+
+    <ul id="taskList">
+        {% for t in tasks %}
+        <li><a href="/task/{{ t['_id'] }}">{{ t['name'] }} </a> / RMB {{ t['money'] }},每人可做{{ t['min'] }}-{{ t['max'] }}
+            <br/>[ {{ t['createDate'] }}] / {{ t['createAccount'] }}</li>
+        {% end %}
+    </ul>
+
+</div>
+
+        {% end %}
+
+
+{% block footer %}
+        {% if userInfo['role'] == 'Author' or  userInfo['role'] == 'Admin' %}
+        <script>
+            function loadFilter(){
+                console.log('加载筛选。。。');
+            }
+
+            $(document).ready(function(){
+                loadFilter();
+            });
+        </script>
+
+        {% end %}
+
+{% end %}

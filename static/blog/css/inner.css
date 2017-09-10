@@ -1,0 +1,108 @@
+/****去除搜索框中的input的边框****/
+.mainbox{margin-top: 80px;}
+.navbar-form input.noborder{ border: none;}
+.sidebar{ margin-bottom: 15px; }
+.sidebar a{font-size: 16px;}
+.top-nav li a,.navbar-right li a{font-size: 16px; line-height: 24px;}
+
+ul#myTab li{ font-size: 16px;}
+ul#myTab li a { color: #737373;}
+ul#myTab li.active a { font-weight: bold;color: #a94442;}
+a.iocon-right{float: right; font-weight: bold;}
+a.iocon-right:hover{color: #a94442;}
+.list-title{ font-size: 16px;}
+
+.column-task{font-size: 18px;font-weight: bold;font-family:"Microsoft Yahei", Tahoma, Arial, STHeiti, sans-serif}
+.column-task-description{color: #737373;}
+.avatar {
+    position: relative;
+    display: inline-block;
+    zoom: 1;
+}
+.avatar .avatar-face {
+    display: inline-block;
+    position: relative;
+    zoom: 1;
+}
+.avatar.avatar-30 .avatar-text {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+}
+
+.avatar .avatar-face .avatar-text {
+    text-align: center;
+    overflow: hidden;
+    display: inline-block;
+    zoom: 1;
+    vertical-align: middle;
+    background: #e7e7df;
+    font-size: 16px;
+    height: 40px;
+    line-height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    color: #d84c31;
+    text-shadow: transparent 0 0 0;
+}
+
+.column-datetime {
+    line-height: 20px;
+    color: #d7d7d7;
+    text-align: right;
+    top: 0;
+}
+.column-timeico{font-size: 20px;}
+
+.user-info{text-align: center}
+.user-info span.user-face{height: 120px;width: 120px;border-radius: 50%; line-height: 120px;background: #a94442;  display: inline-block;}
+
+.user-task ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.user-task ul li {
+    list-style: none;
+    float: left;
+    width: 33.3%;
+    text-align: center;
+    border-right: solid 1px #e1e1e1;
+}
+.user-task ul li.noborder{border: none;}
+.user-task ul li .text {
+    font-size: 14px;
+    color: #646b75;
+    line-height: 28px;
+}
+.user-task ul li.tasks-uncompleted .count {
+    color: #f7af49;
+}
+.user-task ul li .count {
+    font-family: arial;
+    font-size: 20px;
+    font-weight: bolder;
+}
+.user-task ul li span {
+    display: block;
+}
+.user-task ul li.tasks-expired .count {
+    color: #f47a55;
+}
+.user-task ul li.tasks-completed .count {
+    color: #88b244;
+}
+.user-task a{text-decoration: none;}
+.user-task a:hover{color:#b92c28;}
+
+.fc-view-container{max-height: 500px; overflow:scroll}
+#calendar {
+    max-width: 750px;
+    margin: 0 auto;
+}
+.container-calendar{margin-bottom: 10px;}
+.agenda-panel,.task-panel{min-height: 420px;}
+
+ul.agenda-list li,ul.task-list li{list-style: none}
+.show-select{font-size: 12px;}
+.task-item{font-size: 14px;}

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+        {% block header %}
+    <title>Article List</title>
+{% end %}
+
+        {% block main %}
+
+        <div>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>标题</th>
+                    <th>作者</th>
+                    <th>发布时间</th>
+                    <th>分类</th>
+                    <th>状态</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for a in articles %}
+                <tr data-val="{{ a['_id'] }}">
+                    <td><a href="/ucenter/edit/{{ a['_id'] }}">{{ a['title'] }}</a></td>
+                    <td>{{ a['author'] }}</td>
+                    <td>{{ a['date'] }}</td>
+                    <td>{% if a['cate']  %} {{ a['cate']['name'] }} {% else %}-{% end %}</td>
+                    <td>{{ statusList[a['status'] ]}}</td>
+                    <td>-</td>
+                </tr>
+                {% end %}
+                </tbody>
+
+            </table>
+        </div>
+
+        {% end %}

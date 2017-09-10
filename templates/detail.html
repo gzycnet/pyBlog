@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+
+        {% block header %}
+    <title>{{ article['title'] }}</title>
+{% end %}
+
+{% block main %}
+
+        <div class="row">
+            <div class="col-md-9">
+                <div class="">
+        <h2 class="title">{{ article['title'] }}</h2>
+                    <div class="infos">
+                        <span>作者：{{ article['author'] }} </span>｜
+                        <span>发布时间：{{ article['date'] }} </span>
+                    </div>
+
+                    <div class="content">
+                        {% autoescape None %}
+                        {{ article['content']}}
+
+                    </div>
+            <div class="tags">
+                    <span>标签：</span>
+                    {% for t in article['tags'] %}
+                    <code>{{ t }}</code>
+                    {% end %}
+                  </div>
+
+
+
+                    {% if article['status']!=4 and article['status']!=3 %}
+                    <!-- 4:通过、3:拒绝、2:待审核、1:待修改、0:未审核-->
+
+                    {% if mark %}
+                    <div class="text-center p-b-1" id="auditBtn">
+                        <a class="btn btn-success" id="agree" href="/article/audit?id={{ article['_id']}}&s=4">审核通过</a>
+                        <a class="btn btn-danger" id="refuse" href="/article/audit?id={{ article['_id']}}&s=3">拒绝</a>
+                    <button class="btn btn-info" id="addMemo">提交修改意见</button>
+                    </div>
+                    {% end %}
+
+                    {% if article['author']== userInfo['account'] %}
+                    <div class="text-center p-b-1"><a class="btn btn-info" href="/edit/{{ article['_id'] }}">编辑</a></div>
+                    {% end %}
+
+                    {% else %}
+                    <div class="text-center p-b-1">
+                        {% if article['status']==4 %} <button class="btn btn-success">通过审核</button>{% end %}
+                        {% if article['status']==3 %} <button class="btn btn-danger">已经拒绝</button>{% end %}
+                    </div>
+
+
+                    {% end %}
+
+
+                    {% if article.has_key('memoList') and article['memoList'] %}
+                    <div class="memoList p-t-2">
+                        <div class="panel panel-default">
+                            <div class="panel-heading"><h4 class="title">审核意见</h4></div>
+                            <div class="panel-body">
+                                <table class="table">
+                            <thead>
+                            <tr>
+                                <th>审核用户</th>
+                                <th>意见</th>
+                                <th>时间</th>
+                            </tr>
+                            <tbody>
+                        {% for m in article['memoList'] %}
+                            <tr>
+                                <td>{{ m['account'] }}</td>
+                                <td>{{ m['memo'] }}</td>
+                                <td>{{ m['date'] }}</td>
+                            </tr>
+                        {% end %}
+                            </tbody>
+                            </thead>
+                        </table>
+
+                                </div>
+                        </div>
+
+                    </div>
+                    {% end %}
+
+            </div>
+                {% if mark %}
+                <div id="memoForm" style="display: none;">
+                    <h4>提交审核意见</h4>
+
+                    <form action="/article/audit" method="POST">
+                        {% raw xsrf_form_html() %}
+                        <input type="hidden" name="id" value="{{ article['_id'] }}"/>
+                        <input type="hidden" name="u" value="{{ userInfo['account'] }}"/>
+                        <div><textarea name="m" cols="30" rows="5" class="form-control" placeholder="审核意见"></textarea></div>
+                        <div class="pull-right p-t-1"><button type="submit" class="btn btn-primary">提交</button></div>
+                        <div class="pull-right p-t-1 p-r-1"><button type="button" class="btn btn-default" id="cannel">取消</button></div>
+                    </form>
+
+                </div>
+                {% end %}
+
+                </div>
+            <div class="col-md-3"></div>
+        </div>
+
+
+
+{% end %}
+
+
+{% block footer %}
+        {% if mark %}
+<script>
+    $('#addMemo').click(function(){
+        $('#memoForm').show();
+        $('#auditBtn').hide();
+    });
+    $('#cannel').click(function(){
+        $('#memoForm').hide();
+        $('#auditBtn').show();
+    });
+    </script>
+        {% end %}
+{% end %}
