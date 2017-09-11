@@ -554,20 +554,20 @@ class LogoutHandler(tornado.web.RequestHandler):
 
 #文件上传（CKEditor使用）
 class UploadHandler(BaseHandler):
-  def post(self):
-    imgfile = self.request.files.get('upload')
-    callback = self.get_argument('CKEditorFuncNum')
-    imgPath = []
-    for img in imgfile:
-        file_suffix = img['filename'].split(".")[-1]
-        file_name=str(uuid.uuid1())+"."+file_suffix
-        with open('./static/uploads/' + file_name, 'wb') as f:
-            f.write(img['body'])
+    def post(self):
+        imgfile = self.request.files.get('upload')
+        callback = self.get_argument('CKEditorFuncNum')
+        imgPath = []
+        imgRoot = os.path.dirname(__file__)+'/static/uploads/'
+        for img in imgfile:
+            file_suffix = img['filename'].split(".")[-1]
+            file_name=str(uuid.uuid1())+"."+file_suffix
+            with open(imgRoot + file_name, 'wb') as f:
+                f.write(img['body'])
 
-        imgPath.append(file_name)
+            imgPath.append(file_name)
 
-
-    self.write('<script type="text/javascript">window.parent.CKEDITOR.tools.callFunction('+callback+',"/static/uploads/'+imgPath[0]+'","")</script>')
+        self.write('<script type="text/javascript">window.parent.CKEDITOR.tools.callFunction('+callback+',"/static/uploads/'+imgPath[0]+'","")</script>')
 
 
 if __name__ == "__main__":
