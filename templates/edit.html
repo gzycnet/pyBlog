@@ -27,6 +27,9 @@
         <input type="text" class="form-control" name="tags" value="{% for t in article['tags'] %}{{ t }},{% end %}"/>
         <input type="hidden" name="oldTags" value="{% for t in article['tags'] %}{{ t }},{% end %}"/>
     </p>
+                    <p>
+                        <input class="form-control" type="datetime" name="date" value="{{ article['date'] }}"/>
+                    </p>
         <p><button type="submit" class="btn btn-primary" id="addArticle">提交</button></p>
     </form>
             </div>

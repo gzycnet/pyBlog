@@ -351,6 +351,7 @@ class EditArticleHandler(BaseHandler):
             mark +=1
         tags = tags.strip(',').split(',')
         cate = self.get_argument('cate')
+        dateStr = self.get_argument('date')
 
         mongo = MongoCase()
         mongo.connect()
@@ -358,19 +359,30 @@ class EditArticleHandler(BaseHandler):
         db = client.pyblog
         article = db.post.find_one({'_id':ObjectId(id)})
 
+        newData = dict()
+
+        newData['title'] = title
+        newData['content'] = content
+        newData['description'] = description
+        newData['tags'] = tags
+        newData['updateDate'] = datetime.datetime.now()
+        newData['status'] = 2
+
+        try:
+            if '.' in dateStr:
+                d = datetime.datetime.strptime(dateStr,'%Y-%m-%d %H:%M:%S.%f')
+            else:
+                d = datetime.datetime.strptime(dateStr,'%Y-%m-%d %H:%M:%S')
+            newData['date'] = d
+        except:
+            pass
+
+
         if article['cate'] == None and cate !='None':
             t = db.category.find_one(ObjectId(cate))
-            db.post.update({'_id':ObjectId(id)},
-                           {'$set':{
-                               'title':title,'content':content,'description':description,'tags':tags,'updateDate':datetime.datetime.now(),'status':2,'cate':{'id':ObjectId(cate),'name':t['name']}
-                           }
-                           })
-        else:
-            db.post.update({'_id':ObjectId(id)},
-                           {'$set':{
-                               'title':title,'content':content,'description':description,'tags':tags,'updateDate':datetime.datetime.now(),'status':2
-                           }
-                           })
+            newData['cate'] = {'id':ObjectId(cate),'name':t['name']}
+
+        db.post.update({'_id':ObjectId(id)},{'$set':newData})
 
         if mark >0:
             for t in tags:
