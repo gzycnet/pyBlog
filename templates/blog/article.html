@@ -138,7 +138,20 @@ window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="tex
 
 <div id="comments"><h3><span class="commentsnumber">网友评论</span> （0条）</h3>
 <ul class="commentlist">
-          
+
+    {% if article.has_key('commentList') and article['commentList'] %}
+
+    {% for comment in article['commentList'] %}
+          <li id="comment-" class="comment">
+                <div class="top"><a href="{{ comment['homepage'] }}" rel='external nofollow' class='url'>{{ comment['username'] }}</a><span class="time"> {{ comment['date'] }}</span></div>
+
+                <div class="body">
+                                <p>{{ comment['content'] }}</p>
+                </div>
+          </li>
+    {% end %}
+    {% end %}
+
       </ul>
 </div>
 
@@ -200,13 +213,13 @@ window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="tex
 						<!-- 表单开始 -->
 						<div class="cont-form">
 							<form action="/comment/post/" method="post" onsubmit="return checkForm();">
-                                <input type='hidden' name='csrfmiddlewaretoken' value='4vyUpQVrVRGOSpRXJnmrcVNPMq26hJIDYNxbiHvPAYfy2QZgP2ap62sFkXabjfUW' />
+                                {% raw xsrf_form_html() %}
 								<div class="row">
 									<div class="col-md-6 col-sm-6 col-xs-12">
-										<input class="form-control" id="username" maxlength="50" name="username" placeholder="你的名字" tabindex="1" type="text" value="admin" required />
+										<input class="form-control" id="username" maxlength="50" name="username" placeholder="你的名字" tabindex="1" type="text" value="" required />
 									</div>
 									<div class="col-md-6 col-sm-6 col-xs-12">
-										<input class="form-control" id="email" maxlength="50" name="email" placeholder="你的邮箱" tabindex="2" type="text" value="admin@zhaoyoucai.com" required />
+										<input class="form-control" id="email" maxlength="50" name="email" placeholder="你的邮箱" tabindex="2" type="text" value="" required />
 									</div>
 									<div class="col-md-12 col-sm-12 col-xs-12">
                                         <input class="form-control" id="homepage" maxlength="100" name="homepage" placeholder="你的网址" tabindex="3" type="text" />
@@ -216,7 +229,7 @@ window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="tex
 </textarea>
 									</div>
 									<div class="col-md-12 col-sm-12 col-xs-12">
-                                        <input id="id_article" name="article" type="hidden" value="5" />
+                                        <input id="id_article" name="article" type="hidden" value="{{ article['_id'] }}" />
 										<input class="btn btn-primary" type="submit" name="send" id="send" value="戳我吧">
 									</div>
 								</div>

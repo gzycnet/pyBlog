@@ -398,6 +398,41 @@ class EditArticleHandler(BaseHandler):
 
 
 
+class CommentHandler(BaseHandler):
+
+    def post(self):
+        id = self.get_argument('article','')
+        username = self.get_argument('username','')
+        email = self.get_argument('email','')
+        homepage = self.get_argument('homepage','')
+        content = self.get_argument('content','')
+        if username == '' or content == '':
+            self.render('error.html',msg=u'姓名和内容必填')
+
+        else:
+
+            mongo = MongoCase()
+            mongo.connect()
+            client = mongo.client
+            db = client.pyblog
+
+            article = db.post.find_one({'_id':ObjectId(id)})
+
+            if article.has_key('commentList') and article['commentList']:
+                commentList = article['commentList']
+            else:
+                commentList = []
+
+            commentList.append({"email":email,"username":username, "homepage":homepage,"date":datetime.datetime.now(),
+                    'content':content,'parentId':None,'isAudit':False})
+            commentList.reverse()
+
+            db.post.update({"_id":ObjectId(id)},{'$set':{'status':1,'commentList':commentList}})
+
+            self.redirect('/a/'+id)
+
+
+
 class AdminHandler(BaseHandler):
     @tornado.web.authenticated
     def get(self):
@@ -584,6 +619,7 @@ if __name__ == "__main__":
                   (r'/t/([%a-fA-F0-9]+|\w+)/$', BlogTagsHandler),
                   (r'/c/(\w+)/$', BlogCategoryHandler),
                   (r'/a/(\w+)', ArticleDetailHandler),
+                  (r'/comment/post/$', CommentHandler),
                   (r'/ucenter/post$', PostArticleHandler),
                   (r'/ucenter/edit/(\w+)', EditArticleHandler),
                   (r'/ucenter/list$', AuthorArticleListHandler),
