@@ -173,6 +173,7 @@ class BlogTagsHandler(BaseHandler):
         mongo = MongoCase()
         mongo.connect()
         client = mongo.client
+        db = client.pyblog
         posts = db.post
 
         option = {}
