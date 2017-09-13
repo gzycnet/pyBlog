@@ -62,7 +62,8 @@ class IndexHandler(BaseHandler):
                 cateData['side'].append(c)
 
 
-        self.render('blog/index.html',articles=articles,tags=tags,cateData=cateData)
+        #self.render('blog/index.html',articles=articles,tags=tags,cateData=cateData)
+        self.render('blog/home.html',articles=articles,tags=tags,cateData=cateData)
 
         #self.render('index.html')
 
