@@ -83,6 +83,7 @@ class BlogHandler(BaseHandler):
 
 
         tags = db.tags.find().limit(50)
+        links = db.links.find().limit(20)
         cateList = db.category.find()
 
         cateData = dict()
@@ -95,7 +96,7 @@ class BlogHandler(BaseHandler):
                 cateData['side'].append(c)
 
 
-        self.render('blog/index.html',articles=articles,tags=tags,cateData=cateData)
+        self.render('blog/index.html',articles=articles,tags=tags,cateData=cateData,links=links)
 
         #self.render('index.html')
 
@@ -145,6 +146,7 @@ class BlogCategoryHandler(BaseHandler):
 
 
         tags = db.tags.find().limit(50)
+        links = db.links.find().limit(20)
         cateList = db.category.find()
 
         cateData = dict()
@@ -157,7 +159,7 @@ class BlogCategoryHandler(BaseHandler):
                 cateData['side'].append(c)
 
 
-        self.render('blog/index.html',articles=articles,pageInfo=pageInfo,tags=tags,cateData=cateData)
+        self.render('blog/index.html',articles=articles,pageInfo=pageInfo,tags=tags,cateData=cateData,links=links)
 
 
 
@@ -202,6 +204,7 @@ class BlogTagsHandler(BaseHandler):
 
 
         tags = db.tags.find().limit(50)
+        links = db.links.find().limit(20)
         cateList = db.category.find()
 
         cateData = dict()
@@ -213,7 +216,7 @@ class BlogTagsHandler(BaseHandler):
             if c['showSide']:
                 cateData['side'].append(c)
 
-        self.render('blog/index.html',articles=articles,pageInfo=pageInfo,tags=tags,cateData=cateData)
+        self.render('blog/index.html',articles=articles,pageInfo=pageInfo,tags=tags,cateData=cateData,links=links)
 
 
 class PostArticleHandler(BaseHandler):
@@ -486,6 +489,38 @@ class AuditUserHandler(BaseHandler):
 
 
 
+class AddLinkHandler(BaseHandler):
+
+    def get(self):
+        user = self.current_user
+        self.render('blog/link-add.html')
+
+
+    def post(self):
+
+        sitename = self.get_argument('sitename','')
+        email = self.get_argument('email','')
+        homepage = self.get_argument('homepage','')
+        content = self.get_argument('content','')
+
+        if sitename == '' or homepage == '':
+            self.render('error.html',msg=u'网站名称和链接不能为空')
+
+        else:
+            mongo = MongoCase()
+            mongo.connect()
+            client = mongo.client
+            db = client.pyblog
+            try:
+                db.links.insert({'sitename':sitename,'homepage':homepage,'email':email,'content':content,'addtime':datetime.datetime.now(),'isCheck':0,'showType':0})
+
+                self.render('error.html',msg=u'链接提交成功，等待审核中。。')
+            except:
+                self.render('error.html',msg=u'提交失败！')
+
+
+
+
 class RegHandler(BaseHandler):
 
     def get(self):
@@ -537,6 +572,8 @@ class RegHandler(BaseHandler):
                 self.set_secure_cookie("account", email)
 
                 self.redirect('/ucenter/list')
+
+
 
 
 class LoginHandler(BaseHandler):
@@ -630,6 +667,7 @@ if __name__ == "__main__":
                   (r'/admin', AdminHandler),
                   (r'/admin/upload/', UploadHandler),
                   (r'/auditUser/', AuditUserHandler),
+                  (r'/site/addlink', AddLinkHandler),
                   (r".*", BaseHandler),
                   ],
         template_path=os.path.join(os.path.dirname(__file__), "templates"),

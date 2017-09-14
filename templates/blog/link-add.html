@@ -1,0 +1,212 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="applicable-device" content="mobile">
+        <meta name="viewport" content="width=device-width, user-scalable=0, maximum-scale=1.0,minimum-scale=1.0, initial-scale=1.0">
+        
+    <title>友情链接 - 知而不乎</title>
+
+        <!-- Bootstrap -->
+        
+        <link href="http://static.zhaoyoucai.com/static/blog/css/bootstrap.min.css" rel="stylesheet">
+		<link href="http://static.zhaoyoucai.com/static/blog/css/style.css" rel="stylesheet">
+		<link rel="icon" href="/favicon.ico" type="image/x-icon" />
+		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+		<link rel="stylesheet" type="text/css" href="http://static.zhaoyoucai.com/static/blog/css/font-awesome.min.css">
+        <!--[if lt IE 9]>
+			<script src="http://static.zhaoyoucai.com/static/blog/js/html5shiv.js"></script>
+			<script src="http://static.zhaoyoucai.com/static/blog/js/respond.min.js"></script>
+        <![endif]-->
+        <script src="http://static.zhaoyoucai.com/static/blog/js/jquery.min.js"></script>
+        <script src="http://static.zhaoyoucai.com/static/blog/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="http://static.zhaoyoucai.com/static/blog/js/main.js"></script>
+    
+    
+    <style>
+        .sidebar .well{padding: 5px; margin-bottom: 10px;}
+        .sidebar .btn-lg{ padding: 5px 10px;}
+    </style>
+    </head>
+    <body>
+		<!-- 上方导航栏 -->
+		<!-- 上方导航栏结束 -->
+				<!-- 关于我 -->
+		<div class="about-me" id="about-me">
+			<div class="item" id="about-item">
+			<script>
+				var src = Math.round(Math.random()*4+1);
+				document.write('<img class="bg" src="http://static.zhaoyoucai.com/static/blog/images/'+src+'.png" alt="1 slide">');
+			</script>
+				<!--<img class="bg" src="http://static.zhaoyoucai.com/static/blog/images/5.png" alt="1 slide">-->
+				<div class="container" id="about-container">
+					<div class="about-caption">
+						<img id="icon" src="http://static.zhaoyoucai.com/static/blog/images/m.jpg" alt="知而不乎" />
+                        
+						<p id="name"><h3>面对现实 忠于理想</h3></p>
+                        
+						<p id="brief">言有物而行有恒，思其难以图其易！</p>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 关于我 -->
+
+
+
+		 
+    <div class="contact" id="contact-me">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-10" id="contact-form">
+						<div class="form-title">
+							提交链接
+						</div>
+						<!-- 表单开始 -->
+						<div class="cont-form">
+							<form action="" method="post" onsubmit="return checkForm();">
+                                {% raw xsrf_form_html() %}
+								<div class="row">
+									<div class="col-md-6 col-sm-6 col-xs-12">
+										<input class="form-control" id="sitename" maxlength="50" name="sitename" placeholder="网站名称" tabindex="1" type="text" value="" required />
+									</div>
+									<div class="col-md-6 col-sm-6 col-xs-12">
+										<input class="form-control" id="email" maxlength="50" name="email" placeholder="你的邮箱" tabindex="2" type="text" value="" required />
+									</div>
+									<div class="col-md-12 col-sm-12 col-xs-12">
+                                        <input class="form-control" id="homepage" maxlength="100" name="homepage" placeholder="你的网址" tabindex="3" type="text" />
+									</div>
+									<div class="col-md-12 col-sm-12 col-xs-12">
+										<textarea class="form-control" cols="40" id="content" name="content" placeholder="网站介绍" rows="10" tabindex="4" type="text" required>
+</textarea>
+									</div>
+									<div class="col-md-12 col-sm-12 col-xs-12">
+										<input class="btn btn-primary" type="submit" name="send" id="send" value="戳我吧">
+									</div>
+								</div>
+							</form>
+						<!-- 表单结束 -->
+						</div>
+					</div>
+					<div class="col-md-2" id="contact-social">
+						<!--社交按钮 -->
+							<div class="row">
+								<div class="col-md-12 col-sm-2 col-xs-2" id="icon">
+									<a href="http://weibo.com/zhierbuhu" rel="nofollow"  target="_blank" class="social-icon tool-tip sinaweibo" title="新浪微博" data-placement="top" style="height: 70px; font-size: 35px; line-height: 70px;"><i class="fa fa-weibo"></i></a>
+								</div>
+								<div class="col-md-12 col-sm-2 col-xs-2" id="icon">
+									<a href="http://t.qq.com/Zhao-Youcai" rel="nofollow"  target="_blank" class="social-icon tool-tip tencentweibo" title="腾讯微博" data-placement="top" style="height: 70px; font-size: 35px; line-height: 70px;"><i class="fa fa-tencent-weibo"></i></a>
+								</div>
+								<div class="col-md-12 col-sm-2 col-xs-2" id="icon">
+									<a href="http://t.qq.com/Zhao-Youcai" rel="nofollow" target="_blank" class="social-icon tool-tip wechat" title="微信" data-placement="top" style="height: 70px; font-size: 35px; line-height: 70px;"><i class="fa fa-weixin"></i></a>
+								</div>
+								<div class="col-md-12 col-sm-2 col-xs-2" id="icon">
+									<a href="#" target="_blank" class="social-icon tool-tip qq" title="QQ" data-placement="top" style="height: 70px; font-size: 35px; line-height: 70px;"><i class="fa fa-qq"></i></a>
+								</div>
+								<div class="col-md-12 col-sm-2 col-xs-2" id="icon">
+									<a href="#" target="_blank" class="social-icon tool-tip renren" title="人人" data-placement="top" style="height: 70px; font-size: 35px; line-height: 70px;"><i class="fa fa-renren"></i></a>
+								</div>
+								<div class="col-md-12 col-sm-2 col-xs-2" id="icon">
+									<a href="https://github.com/gzycnet" rel="nofollow" target="_blank" class="social-icon tool-tip github" title="GitHub" data-placement="top" style="height: 70px; font-size: 35px; line-height: 70px;"><i class="fa fa-github"></i></a>
+								</div>
+							</div>
+						<!-- 社交按钮结束 -->
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<!-- 版权 -->
+		<div class="foot">
+            <p><a href="#">关于博客</a>｜<a href="#">广告合作</a>｜<a href="#">隐私保护</a>｜ <a href="https://github.com/gzycnet/pyBlog">更新历史</a> </p>
+			 Copyright © 2011～2017 <a href="/">赵有财</a> 版权所有 - 基于Tornado ~ Bootstrap搭建的个人博客
+		</div>
+		<!-- 版权结束 -->
+    <script>
+$(document).scroll(function () {
+if ($(document).scrollTop() > 400) {
+$("#navbar").addClass("navbar-fixed-top");
+}else{
+    $("#navbar").removeClass("navbar-fixed-top");
+}
+});
+    </script>
+	
+<script>
+//百度统计
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?ea855a717e8b3cddc19fa6b373ec05c4";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+    
+    <div class="modal fade" id="mymodal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+						<h4 class="modal-title">温馨提示</h4>
+					</div>
+					<div class="modal-body" id="modal-body">
+						<p>提示框</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div>
+    <script>
+			function checkForm(){
+				var sitename = $('form #sitename').val();
+				var email = $('form #email').val();
+				var homepage = $('form #homepage').val();
+				var content = $('form #content').val();
+				var myreg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+                var urlreg = /http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/;
+				if(sitename.length==0){
+					document.getElementById("sitename").innerHTML = "请留下您的姓名";
+					$("#mymodal").modal("toggle");
+                    return false;
+				}else if(!myreg.test(email)){
+					document.getElementById("modal-body").innerHTML = "请填入正确的邮箱";
+					$("#mymodal").modal("toggle");
+                    return false;
+				}else if(!urlreg.test(homepage)){
+                    document.getElementById("modal-body").innerHTML = "请填入正确的网址";
+                    $("#mymodal").modal("toggle");
+                    return false;
+                }else if(content.length==0){
+					document.getElementById("modal-body").innerHTML = "请留下您要说的话";
+					$("#mymodal").modal("toggle");
+                    return false;
+				}else{
+					document.getElementById("send").value = "评论提交中...";
+				}
+			}
+		</script>
+
+    <script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+</body></html>
