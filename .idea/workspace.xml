@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="87e4a774-305b-4e98-a115-cb468bb234ad" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/blog/link-add.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/blog/home.html" afterPath="$PROJECT_DIR$/templates/blog/home.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/blog/index.html" afterPath="$PROJECT_DIR$/templates/blog/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web.py" afterPath="$PROJECT_DIR$/web.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="pyBlog.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -51,10 +49,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="web.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="web.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5811138" vertical-offset="2775" max-vertical-offset="10020">
+            <state vertical-scroll-proportion="0.0" vertical-offset="2775" max-vertical-offset="10020">
               <caret line="218" column="113" selection-start-line="218" selection-start-column="113" selection-end-line="218" selection-end-column="113" />
               <folding />
             </state>
@@ -64,8 +62,18 @@
       <file leaf-file-name="link-add.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/blog/link-add.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-16.833334" vertical-offset="2206" max-vertical-offset="3255">
+            <state vertical-scroll-proportion="-108.75" vertical-offset="0" max-vertical-offset="3255">
               <caret line="174" column="27" selection-start-line="174" selection-start-column="27" selection-end-line="174" selection-end-column="27" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="home.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/blog/home.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-12.75" vertical-offset="159" max-vertical-offset="6510">
+              <caret line="31" column="57" selection-start-line="31" selection-start-column="57" selection-end-line="31" selection-end-column="57" />
               <folding />
             </state>
           </provider>
@@ -81,11 +89,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/blog/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.7083333" vertical-offset="2506" max-vertical-offset="3510">
-              <caret line="173" column="54" selection-start-line="173" selection-start-column="54" selection-end-line="173" selection-end-column="54" />
+            <state vertical-scroll-proportion="0.46015424" vertical-offset="2506" max-vertical-offset="3510">
+              <caret line="179" column="56" selection-start-line="179" selection-start-column="56" selection-end-line="179" selection-end-column="56" />
               <folding />
             </state>
           </provider>
@@ -116,11 +124,11 @@
         <option value="$PROJECT_DIR$/templates/edit.html" />
         <option value="$PROJECT_DIR$/templates/blog/article.html" />
         <option value="$PROJECT_DIR$/templates/home.html" />
-        <option value="$PROJECT_DIR$/templates/blog/home.html" />
         <option value="$PROJECT_DIR$/templates/link-add.html" />
         <option value="$PROJECT_DIR$/templates/blog/link-add.html" />
-        <option value="$PROJECT_DIR$/templates/blog/index.html" />
         <option value="$PROJECT_DIR$/web.py" />
+        <option value="$PROJECT_DIR$/templates/blog/home.html" />
+        <option value="$PROJECT_DIR$/templates/blog/index.html" />
       </list>
     </option>
   </component>
@@ -729,21 +737,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/blog/home.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.0901637" vertical-offset="5274" max-vertical-offset="6510">
-          <caret line="203" column="113" selection-start-line="203" selection-start-column="113" selection-end-line="203" selection-end-column="113" />
-          <folding>
-            <element signature="n#style#0;n#a#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#5;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#a#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#5;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#a#0;n#div#2;n#div#0;n#div#1;n#div#0;n#div#0;n#div#5;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#a#0;n#div#3;n#div#0;n#div#1;n#div#0;n#div#0;n#div#5;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#a#0;n#div#4;n#div#0;n#div#1;n#div#0;n#div#0;n#div#5;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#a#0;n#div#5;n#div#0;n#div#1;n#div#0;n#div#0;n#div#5;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/libs/ckeditor/config.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6830986" vertical-offset="309" max-vertical-offset="735">
@@ -768,26 +761,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/web.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2775" max-vertical-offset="10020">
+          <caret line="218" column="113" selection-start-line="218" selection-start-column="113" selection-end-line="218" selection-end-column="113" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/templates/blog/link-add.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-16.833334" vertical-offset="2206" max-vertical-offset="3255">
+        <state vertical-scroll-proportion="-108.75" vertical-offset="0" max-vertical-offset="3255">
           <caret line="174" column="27" selection-start-line="174" selection-start-column="27" selection-end-line="174" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/blog/home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.75" vertical-offset="159" max-vertical-offset="6510">
+          <caret line="31" column="57" selection-start-line="31" selection-start-column="57" selection-end-line="31" selection-end-column="57" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/blog/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.7083333" vertical-offset="2506" max-vertical-offset="3510">
-          <caret line="173" column="54" selection-start-line="173" selection-start-column="54" selection-end-line="173" selection-end-column="54" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5811138" vertical-offset="2775" max-vertical-offset="10020">
-          <caret line="218" column="113" selection-start-line="218" selection-start-column="113" selection-end-line="218" selection-end-column="113" />
+        <state vertical-scroll-proportion="0.46015424" vertical-offset="2506" max-vertical-offset="3510">
+          <caret line="179" column="56" selection-start-line="179" selection-start-column="56" selection-end-line="179" selection-end-column="56" />
           <folding />
         </state>
       </provider>
