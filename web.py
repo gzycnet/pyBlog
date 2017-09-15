@@ -291,6 +291,13 @@ class ArticleDetailHandler(BaseHandler):
         tags = db.tags.find().limit(50)
         cateList = db.category.find()
 
+
+        ads0 = db.ads.find_one({'position':'0'})
+
+        adsData = dict()
+        adsData['ads0'] = ads0
+
+
         cateData = dict()
         cateData['menu'] = []
         cateData['side'] = []
@@ -300,7 +307,7 @@ class ArticleDetailHandler(BaseHandler):
             if c['showSide']:
                 cateData['side'].append(c)
 
-        self.render('blog/article.html',article=article,tags=tags,cateData=cateData)
+        self.render('blog/article.html',article=article,tags=tags,cateData=cateData,adsData=adsData)
 
 
 

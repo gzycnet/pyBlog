@@ -89,7 +89,11 @@
         <div class="ainfo"><span class="author glyphicon glyphicon-user"> {{ article['author'] }}</span> {% if article.has_key('cate') and article['cate'] %}<span class="cate glyphicon glyphicon-folder-open"> {{ article['cate']['name'] }}</span>{% end %}  <span class="views glyphicon glyphicon-eye-open"> {% if article.has_key('views') %}{{ article['views'] }}{% else %}0{% end %}</span> <span class="glyphicon glyphicon-comment"> 0</span> <span class="pub-date glyphicon glyphicon-time glyphicon"> {{ article['date'] }}</span></div>
 <div class="blank10" style="height: 20px;"></div>
     <div class="ads">
-
+{% if adsData.has_key('ads0') and adsData['ads0'] != None %}
+        {% if adsData['ads0']['img'] != '' %}
+        <a href="{{ adsData['ads0']['link'] }}" target="_blank"><img src="{{ adsData['ads0']['img'] }}" width="728" ></a>
+        {% end %}
+        {% end %}
 
     </div>
     <div class="content">
