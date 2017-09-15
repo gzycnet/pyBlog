@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+        {% block header %}
+    <title>友情链接管理</title>
+{% end %}
+
+{% block main %}
+<div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>网站名称</th>
+            <th>URL</th>
+            <th>邮箱</th>
+            <th>时间</th>
+            <th>状态</th>
+            <th>显示</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for link in linkList %}
+        <tr>
+            <td>{{ link['_id'] }}</td>
+            <td>{{ link['sitename'] }}</td>
+            <td>{{ link['homepage'] }}</td>
+            <td>{{ link['email'] }}</td>
+            <td>{{ link['addtime'] }}</td>
+            <td>{{ link['isCheck'] }}</td>
+            <td>{{ link['showType'] }}</td>
+            <td><a href="{{ link['homepage'] }}" target="_blank">查看</a> | <a href="/auditLink/?action=active&id={{ link['_id'] }}">通过</a> | <a href="/auditLink/?action=deActive&id={{ link['_id'] }}">禁止</a> | <a href="/auditLink/?action=delete&id={{ link['_id'] }}">删除</a></td>
+        </tr>
+        {% end %}
+        </tbody>
+    </table>
+
+</div>
+
+{% end %}
