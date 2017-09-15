@@ -488,6 +488,59 @@ class AuditUserHandler(BaseHandler):
             self.render('error.html',msg=u'非法操作！')
 
 
+class AdminAdsHandler(BaseHandler):
+    @tornado.web.authenticated
+    def get(self):
+        user = user=self.current_user
+        mongo = MongoCase()
+        mongo.connect()
+        client = mongo.client
+        db = client.pyblog
+        userInfo = db.user.find({"account":user})
+        if user and userInfo.count():
+            if userInfo[0]['isSupper']:
+                AdsList = db.ads.find()
+
+                self.render('admin-ads.html',AdsList=AdsList,userInfo=userInfo[0])
+            else:
+                self.redirect('/')
+        else:
+            self.clear_cookie('account')
+            self.render('error.html',msg=u'非法用户！')
+
+
+class AddAdsHandler(BaseHandler):
+
+    def get(self):
+        user = self.current_user
+        self.render('blog/ads-add.html')
+
+
+    def post(self):
+
+        adname = self.get_argument('adname','')
+        email = self.get_argument('email','')
+        link = self.get_argument('link','')
+        img = self.get_argument('img','')
+        position = self.get_argument('position','0')
+        content = self.get_argument('content','')
+
+        if adname == '' or email == '' or link == '' or content == '':
+            self.render('error.html',msg=u'广告名称和链接不能为空')
+
+        else:
+            mongo = MongoCase()
+            mongo.connect()
+            client = mongo.client
+            db = client.pyblog
+            try:
+                db.ads.insert({'adname':adname,'link':link,'email':email,'content':content,'img':img,'position':position,'addtime':datetime.datetime.now(),'isCheck':0,'showType':0,'weight':99})
+
+                self.render('error.html',msg=u'广告提交成功，等待审核中。。')
+            except:
+                self.render('error.html',msg=u'提交失败！')
+
+
 class AdminLinksHandler(BaseHandler):
     @tornado.web.authenticated
     def get(self):
@@ -507,6 +560,8 @@ class AdminLinksHandler(BaseHandler):
         else:
             self.clear_cookie('account')
             self.render('error.html',msg=u'非法用户！')
+
+
 
 
 class AuditLinksHandler(BaseHandler):
@@ -721,6 +776,8 @@ if __name__ == "__main__":
                   (r'/admin/links', AdminLinksHandler),
                   (r'/auditLink/', AuditLinksHandler),
                   (r'/site/addlink', AddLinkHandler),
+                  (r'/site/addAds', AddAdsHandler),
+                  (r'/admin/ads', AdminAdsHandler),
                   (r".*", BaseHandler),
                   ],
         template_path=os.path.join(os.path.dirname(__file__), "templates"),

@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+        {% block header %}
+    <title>友情链接管理</title>
+{% end %}
+
+{% block main %}
+<div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>广告信息</th>
+            <th>内容</th>
+            <th>位置</th>
+            <th>状态</th>
+            <th>时间</th>
+            <th>显示</th>
+            <th>权重</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for ad in AdsList %}
+        <tr>
+            <td>{{ ad['_id'] }}</td>
+            <td>{{ ad['adname'] }}
+                <br/>{{ ad['email'] }}
+            </td>
+            <td>{% if ad['img'] != '' %}<img src="{{ ad['img'] }}" width="200">{% end %}
+                <br/>{{ ad['link'] }}
+                <br/><查看代码>
+            </td>
+            <td>{{ ad['position'] }}</td>
+            <td>{{ ad['isCheck'] }}</td>
+            <td>{{ ad['addtime'] }}
+
+            {% if ad.has_key('starttime') %}<br/>{{ ad['starttime'] }}{% else %}{% end %}
+            {% if ad.has_key('endtime') %}<br/>{{ ad['endtime'] }}{% else %}{% end %}
+            </td>
+
+            <td>{{ ad['showType'] }}</td>
+            <td>{{ ad['weight'] }}</td>
+            <td><a href="#" target="_blank">预览</a> | <a href="/auditAds/?action=active&id={{ ad['_id'] }}">通过</a> | <a href="/auditAds/?action=deActive&id={{ ad['_id'] }}">禁止</a> | <a href="/auditAds/?action=delete&id={{ ad['_id'] }}">删除</a></td>
+        </tr>
+        {% end %}
+        </tbody>
+    </table>
+
+</div>
+
+{% end %}
