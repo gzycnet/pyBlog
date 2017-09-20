@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="87e4a774-305b-4e98-a115-cb468bb234ad" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/blog/article.html" afterPath="$PROJECT_DIR$/templates/blog/article.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web.py" afterPath="$PROJECT_DIR$/web.py" />
-    </list>
+    <list default="true" id="87e4a774-305b-4e98-a115-cb468bb234ad" name="Default" comment="" />
     <ignored path="pyBlog.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -49,10 +46,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="article.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="article.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/blog/article.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6010929" vertical-offset="1175" max-vertical-offset="5505">
+            <state vertical-scroll-proportion="-9.166667" vertical-offset="1175" max-vertical-offset="5505">
               <caret line="93" column="62" selection-start-line="93" selection-start-column="62" selection-end-line="93" selection-end-column="62" />
               <folding />
             </state>
@@ -69,11 +66,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="admin-ads.html" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="admin-ads.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/admin-ads.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.5" vertical-offset="180" max-vertical-offset="855">
-              <caret line="16" column="23" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="23" />
+            <state vertical-scroll-proportion="0.63114756" vertical-offset="294" max-vertical-offset="855">
+              <caret line="35" column="35" selection-start-line="35" selection-start-column="35" selection-end-line="35" selection-end-column="35" />
               <folding />
             </state>
           </provider>
@@ -119,9 +116,9 @@
         <option value="$PROJECT_DIR$/templates/admin-link.html" />
         <option value="$PROJECT_DIR$/templates/blog/ads-add.html" />
         <option value="$PROJECT_DIR$/templates/base.html" />
-        <option value="$PROJECT_DIR$/templates/admin-ads.html" />
         <option value="$PROJECT_DIR$/web.py" />
         <option value="$PROJECT_DIR$/templates/blog/article.html" />
+        <option value="$PROJECT_DIR$/templates/admin-ads.html" />
       </list>
     </option>
   </component>
@@ -443,7 +440,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="724" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -454,7 +451,7 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.318038" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.318038" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -794,14 +791,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/admin-ads.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.5" vertical-offset="180" max-vertical-offset="855">
-          <caret line="16" column="23" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-6.3461537" vertical-offset="4215" max-vertical-offset="11775">
@@ -812,8 +801,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/blog/article.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6010929" vertical-offset="1175" max-vertical-offset="5505">
+        <state vertical-scroll-proportion="-9.166667" vertical-offset="1175" max-vertical-offset="5505">
           <caret line="93" column="62" selection-start-line="93" selection-start-column="62" selection-end-line="93" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/admin-ads.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.63114756" vertical-offset="294" max-vertical-offset="855">
+          <caret line="35" column="35" selection-start-line="35" selection-start-column="35" selection-end-line="35" selection-end-column="35" />
           <folding />
         </state>
       </provider>
