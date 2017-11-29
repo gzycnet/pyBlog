@@ -29,7 +29,7 @@
             <td>{{ link['addtime'] }}</td>
             <td>{{ link['isCheck'] }}</td>
             <td>{{ link['showType'] }}</td>
-            <td><a href="{{ link['homepage'] }}" target="_blank">查看</a> | <a href="/auditLink/?action=active&id={{ link['_id'] }}">通过</a> | <a href="/auditLink/?action=deActive&id={{ link['_id'] }}">禁止</a> | <a href="/auditLink/?action=delete&id={{ link['_id'] }}">删除</a></td>
+            <td><a href="{{ link['homepage'] }}" target="_blank">查看</a> | <a href="/admin/auditLink/?action=active&id={{ link['_id'] }}">通过</a> | <a href="/admin/auditLink/?action=deActive&id={{ link['_id'] }}">禁止</a> | <a href="/admin/auditLink/?action=delete&id={{ link['_id'] }}">删除</a></td>
         </tr>
         {% end %}
         </tbody>

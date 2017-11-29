@@ -41,7 +41,7 @@
 
             <td>{{ ad['showType'] }}</td>
             <td>{{ ad['weight'] }}</td>
-            <td><a href="#" target="_blank">预览</a> | <a href="/auditAds/?action=active&id={{ ad['_id'] }}">通过</a> | <a href="/auditAds/?action=deActive&id={{ ad['_id'] }}">禁止</a> | <a href="/auditAds/?action=delete&id={{ ad['_id'] }}">删除</a></td>
+            <td><a href="#" target="_blank">预览</a> | <a href="/admin/auditAds/?action=active&id={{ ad['_id'] }}">通过</a> | <a href="/admin/auditAds/?action=deActive&id={{ ad['_id'] }}">禁止</a> | <a href="/admin/auditAds/?action=delete&id={{ ad['_id'] }}">删除</a></td>
         </tr>
         {% end %}
         </tbody>
