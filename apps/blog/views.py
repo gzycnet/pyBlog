@@ -226,7 +226,7 @@ class CommentHandler(BaseHandler):
 
             db.post.update({"_id":ObjectId(id)},{'$set':{'status':1,'commentList':commentList}})
 
-            self.redirect('/a/'+id)
+            self.redirect('/a/'+id+'/')
 
 
 class AddLinkHandler(BaseHandler):

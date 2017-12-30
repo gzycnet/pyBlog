@@ -93,7 +93,7 @@
                 
         {% for art in articles %}
         <div class="ablock">
-        <div class="atitle"><h2><a href="/a/{{ art['_id'] }}">{{ art['title'] }}</a></h2></div>
+        <div class="atitle"><h2><a href="/a/{{ art['_id'] }}/">{{ art['title'] }}</a></h2></div>
         <div class="ainfo"><span class="author glyphicon glyphicon-user"> {{ art['author'] }}</span> {% if art.has_key('cate') and art['cate'] %}<span class="cate glyphicon glyphicon-folder-open"> {{ art['cate']['name'] }}</span>{% end %}  <span class="views glyphicon glyphicon-eye-open"> {% if art.has_key('views') %}{{ art['views'] }}{% else %}0{% end %}</span> <span class="glyphicon glyphicon-comment"> 1</span> <span class="pub-date glyphicon glyphicon-time glyphicon"> {{ art['date'] }} </span></div>
         <div class="acontent">
             {{ art['description'] }}</div>
