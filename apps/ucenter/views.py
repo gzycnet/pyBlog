@@ -40,6 +40,8 @@ class PostArticleHandler(BaseHandler):
         tags = self.get_argument('tags')
         tags = tags.split(',')
         cate = self.get_argument('cate','None')
+        dateStr = self.get_argument('date')
+
 
         mongo = MongoCase()
         mongo.connect()
@@ -47,12 +49,46 @@ class PostArticleHandler(BaseHandler):
 
         db = client.pyblog
         posts = db.post
+
+        newData = dict()
+
+        newData['author'] = author
+        newData['title'] = title
+        newData['content'] = content
+        newData['description'] = description
+        newData['tags'] = tags
+        newData['updateDate'] = datetime.datetime.now()
+        newData['status'] = 2
+        newData['views'] = 0
+        newData['likes'] = 0
+        newData['unlikes'] = 0
+
+        if dateStr:
+            try:
+                newData['date'] = datetime.datetime.strptime(dateStr,'%Y-%m-%d %H:%M:%S')
+            except Exception as e:
+                print(e)
+                try:
+                    newData['date'] = datetime.datetime.strptime(dateStr,'%Y-%m-%d')
+                except Exception as e:
+                    print(e)
+                    newData['date'] = datetime.datetime.now()
+        else:
+            newData['date'] = datetime.datetime.now()
+
+
+        newData['archive'] = (newData['date']).strftime('%Y-%m')
+
+
         if cate != 'None':
             t = db.category.find_one(ObjectId(cate))
-            new_post = {"author":author,"title":title,'content':content,'description':description,'tags':tags,'date':datetime.datetime.now(),'updateDate':datetime.datetime.now(),'status':0,'cate':{'id':ObjectId(cate),'name':t['name']},'views':0,'likes':0,'unlikes':0}
+            newData['cate'] = {'id':ObjectId(cate),'name':t['name']}
+            #new_post = {"author":author,"title":title,'content':content,'description':description,'tags':tags,'date':datetime.datetime.now(),'updateDate':datetime.datetime.now(),'status':0,'cate':{'id':ObjectId(cate),'name':t['name']},'views':0,'likes':0,'unlikes':0}
         else:
-            new_post = {"author":author,"title":title,'content':content,'description':description,'tags':tags,'date':datetime.datetime.now(),'updateDate':datetime.datetime.now(),'status':0,'cate':None,'views':0,'likes':0,'unlikes':0}
-        posts.insert(new_post)
+            newData['cate'] = None
+            #new_post = {"author":author,"title":title,'content':content,'description':description,'tags':tags,'date':datetime.datetime.now(),'updateDate':datetime.datetime.now(),'status':0,'cate':None,'views':0,'likes':0,'unlikes':0}
+
+        posts.insert(newData)
 
         for t in tags:
             if t != '':
@@ -135,14 +171,26 @@ class EditArticleHandler(BaseHandler):
         newData['updateDate'] = datetime.datetime.now()
         newData['status'] = 2
 
-        try:
+
+        if dateStr:
             if '.' in dateStr:
-                d = datetime.datetime.strptime(dateStr,'%Y-%m-%d %H:%M:%S.%f')
+                try:
+                    newData['date'] = datetime.datetime.strptime(dateStr,'%Y-%m-%d %H:%M:%S.%f')
+                    newData['archive'] = (newData['date']).strftime('%Y-%m')
+                except:
+                    pass
+            elif ' ' in dateStr:
+                try:
+                    newData['date'] = datetime.datetime.strptime(dateStr,'%Y-%m-%d %H:%M:%S')
+                    newData['archive'] = (newData['date']).strftime('%Y-%m')
+                except:
+                    pass
             else:
-                d = datetime.datetime.strptime(dateStr,'%Y-%m-%d %H:%M:%S')
-            newData['date'] = d
-        except:
-            pass
+                try:
+                    newData['date'] = datetime.datetime.strptime(dateStr,'%Y-%m-%d')
+                    newData['archive'] = (newData['date']).strftime('%Y-%m')
+                except:
+                    pass
 
 
         if article['cate'] == None and cate !='None':
