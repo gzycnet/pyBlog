@@ -36,7 +36,10 @@ class BlogHandler(BaseHandler):
                 cateData['side'].append(c)
 
 
-        self.render('blog/index.html',articles=articles,tags=tags,cateData=cateData,links=links)
+        archives = db.post.aggregate([{'$group': {'_id': "$archive", 'count': {'$sum': 1}}}])
+
+
+        self.render('blog/index.html',articles=articles,tags=tags,cateData=cateData,archives=archives,links=links)
 
         #self.render('index.html')
 
@@ -99,7 +102,10 @@ class BlogCategoryHandler(BaseHandler):
                 cateData['side'].append(c)
 
 
-        self.render('blog/index.html',articles=articles,pageInfo=pageInfo,tags=tags,cateData=cateData,links=links)
+        archives = db.post.aggregate([{'$group': {'_id': "$archive", 'count': {'$sum': 1}}}])
+
+
+        self.render('blog/index.html',articles=articles,pageInfo=pageInfo,tags=tags,cateData=cateData,archives=archives,links=links)
 
 
 
@@ -120,6 +126,7 @@ class BlogTagsHandler(BaseHandler):
         posts = db.post
 
         option = {}
+
 
         if t !='':
             option = {"tags":t}
@@ -156,8 +163,68 @@ class BlogTagsHandler(BaseHandler):
             if c['showSide']:
                 cateData['side'].append(c)
 
-        self.render('blog/index.html',articles=articles,pageInfo=pageInfo,tags=tags,cateData=cateData,links=links)
+        archives = db.post.aggregate([{'$group': {'_id': "$archive", 'count': {'$sum': 1}}}])
 
+        self.render('blog/index.html',articles=articles,pageInfo=pageInfo,tags=tags,cateData=cateData,archives=archives,links=links)
+
+
+
+class BlogArchiveHandler(BaseHandler):
+    def get(self,d):
+
+        pageSize = 20
+
+        try:
+            page = int(self.get_argument('page',1))
+        except:
+            page = 1
+
+        mongo = MongoCase()
+        mongo.connect()
+        client = mongo.client
+        db = client.pyblog
+        posts = db.post
+
+        option = {}
+
+        if d !='':
+            option = {"archive":d}
+
+        totalCount = posts.find(option).count()
+
+        articles = posts.find(option).sort("date",-1).limit(pageSize).skip((page-1)*pageSize)
+
+        pageInfo = dict()
+        p = divmod(totalCount,pageSize)
+
+        totalPage = p[0]
+        if p[1]>0:
+            totalPage += 1
+
+        pageInfo['totalPage'] = totalPage
+        pageInfo['totalCount'] = totalCount
+        pageInfo['pageSize'] = pageSize
+        pageInfo['pageNo'] = page
+        pageInfo['pageList'] = range(1,totalPage+1)
+
+
+
+        tags = db.tags.find().limit(50)
+        links = db.links.find({'showType':1}).limit(20)
+        cateList = db.category.find()
+
+        cateData = dict()
+        cateData['menu'] = []
+        cateData['side'] = []
+        for c in cateList:
+            if c['showMenu']:
+               cateData['menu'].append(c)
+            if c['showSide']:
+                cateData['side'].append(c)
+
+        archives = db.post.aggregate([{'$group': {'_id': "$archive", 'count': {'$sum': 1}}}])
+
+        self.render('blog/index.html',articles=articles,pageInfo=pageInfo,tags=tags,archives=archives,cateData=cateData,links=links)
 
 class ArticleDetailHandler(BaseHandler):
     def get(self,id):
@@ -193,7 +260,10 @@ class ArticleDetailHandler(BaseHandler):
             if c['showSide']:
                 cateData['side'].append(c)
 
-        self.render('blog/article.html',article=article,tags=tags,cateData=cateData,adsData=adsData)
+
+        archives = db.post.aggregate([{'$group': {'_id': "$archive", 'count': {'$sum': 1}}}])
+
+        self.render('blog/article.html',article=article,tags=tags,cateData=cateData,archives=archives,adsData=adsData)
 
 class CommentHandler(BaseHandler):
 
