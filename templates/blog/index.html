@@ -168,6 +168,26 @@
 
     </div>
 </div>
+            {% if archives %}
+
+            <div class="panel panel-default">
+        <div class="panel-heading">
+        <h3 class="panel-title">归档</h3>
+        </div>
+    <div class="panel-body">
+
+        {% for archive in archives %}
+
+        {% if archive['_id'] != None %}
+
+<p class="well"><a href="/archive/{{ archive['_id'] }}/" class="">{{ archive['_id'] }}({{  archive['count'] }}) </a><p>
+{% else %}
+        <p class="well"><a class="">未归档({{  archive['count'] }}) </a></p>
+        {% end %}
+        {% end %}
+    </div>
+</div>{% end %}
+
 
             <div class="panel panel-default">
         <div class="panel-heading">

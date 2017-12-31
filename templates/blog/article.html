@@ -192,6 +192,26 @@ window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="tex
     </div>
 </div>
 
+            {% if archives %}
+
+            <div class="panel panel-default">
+        <div class="panel-heading">
+        <h3 class="panel-title">归档</h3>
+        </div>
+    <div class="panel-body">
+
+        {% for archive in archives %}
+
+        {% if archive['_id'] != None %}
+
+<p class="well"><a href="/archive/{{ archive['_id'] }}/" class="">{{ archive['_id'] }}({{  archive['count'] }}) </a><p>
+{% else %}
+        <p class="well"><a class="">未归档({{  archive['count'] }}) </a></p>
+        {% end %}
+        {% end %}
+    </div>
+</div>{% end %}
+
 
         <div class="ads">
 
@@ -260,7 +280,7 @@ window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="tex
 									<a href="#" target="_blank" class="social-icon tool-tip renren" title="人人" data-placement="top" style="height: 70px; font-size: 35px; line-height: 70px;"><i class="fa fa-renren"></i></a>
 								</div>
 								<div class="col-md-12 col-sm-2 col-xs-2" id="icon">
-									<a href="https://github.com/gzycnet" rel="nofollow" target="_blank" class="social-icon tool-tip github" title="GitHub" data-placement="top" style="height: 70px; font-size: 35px; line-height: 70px;"><i class="fa fa-github"></i></a>
+									<a href="https://github.com/zhaoyoucai" rel="nofollow" target="_blank" class="social-icon tool-tip github" title="GitHub" data-placement="top" style="height: 70px; font-size: 35px; line-height: 70px;"><i class="fa fa-github"></i></a>
 								</div>
 							</div>
 						<!-- 社交按钮结束 -->
