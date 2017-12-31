@@ -59,7 +59,7 @@ class PostArticleHandler(BaseHandler):
         newData['tags'] = tags
         newData['updateDate'] = datetime.datetime.now()
         newData['status'] = 2
-        newData['views'] = 0
+        newData['views'] = 300
         newData['likes'] = 0
         newData['unlikes'] = 0
 

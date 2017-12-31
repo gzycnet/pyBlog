@@ -37,9 +37,20 @@ class BlogHandler(BaseHandler):
 
 
         archives = db.post.aggregate([{'$group': {'_id': "$archive", 'count': {'$sum': 1}}}])
+        result = []
+        result2 = []
+        for itme in archives:
+            if itme['_id']:
+                result.append({'date':datetime.datetime.strptime(itme['_id'],'%Y-%m'),'count':itme['count']})
+            else:
+                result2.append({'date':None,'count':itme['count']})
+
+        result.sort(lambda x,y: cmp(x['date'], y['date']))
+        result.reverse()
+        result.extend(result2)
 
 
-        self.render('blog/index.html',articles=articles,tags=tags,cateData=cateData,archives=archives,links=links)
+        self.render('blog/index.html',articles=articles,tags=tags,cateData=cateData,archives=result,links=links)
 
         #self.render('index.html')
 
@@ -103,9 +114,20 @@ class BlogCategoryHandler(BaseHandler):
 
 
         archives = db.post.aggregate([{'$group': {'_id': "$archive", 'count': {'$sum': 1}}}])
+        result = []
+        result2 = []
+        for itme in archives:
+            if itme['_id']:
+                result.append({'date':datetime.datetime.strptime(itme['_id'],'%Y-%m'),'count':itme['count']})
+            else:
+                result2.append({'date':None,'count':itme['count']})
+
+        result.sort(lambda x,y: cmp(x['date'], y['date']))
+        result.reverse()
+        result.extend(result2)
 
 
-        self.render('blog/index.html',articles=articles,pageInfo=pageInfo,tags=tags,cateData=cateData,archives=archives,links=links)
+        self.render('blog/index.html',articles=articles,pageInfo=pageInfo,tags=tags,cateData=cateData,archives=result,links=links)
 
 
 
@@ -165,7 +187,19 @@ class BlogTagsHandler(BaseHandler):
 
         archives = db.post.aggregate([{'$group': {'_id': "$archive", 'count': {'$sum': 1}}}])
 
-        self.render('blog/index.html',articles=articles,pageInfo=pageInfo,tags=tags,cateData=cateData,archives=archives,links=links)
+        result = []
+        result2 = []
+        for itme in archives:
+            if itme['_id']:
+                result.append({'date':datetime.datetime.strptime(itme['_id'],'%Y-%m'),'count':itme['count']})
+            else:
+                result2.append({'date':None,'count':itme['count']})
+
+        result.sort(lambda x,y: cmp(x['date'], y['date']))
+        result.reverse()
+        result.extend(result2)
+
+        self.render('blog/index.html',articles=articles,pageInfo=pageInfo,tags=tags,cateData=cateData,archives=result,links=links)
 
 
 
@@ -223,8 +257,19 @@ class BlogArchiveHandler(BaseHandler):
                 cateData['side'].append(c)
 
         archives = db.post.aggregate([{'$group': {'_id': "$archive", 'count': {'$sum': 1}}}])
+        result = []
+        result2 = []
+        for itme in archives:
+            if itme['_id']:
+                result.append({'date':datetime.datetime.strptime(itme['_id'],'%Y-%m'),'count':itme['count']})
+            else:
+                result2.append({'date':None,'count':itme['count']})
 
-        self.render('blog/index.html',articles=articles,pageInfo=pageInfo,tags=tags,archives=archives,cateData=cateData,links=links)
+        result.sort(lambda x,y: cmp(x['date'], y['date']))
+        result.reverse()
+        result.extend(result2)
+
+        self.render('blog/index.html',articles=articles,pageInfo=pageInfo,tags=tags,archives=result,cateData=cateData,links=links)
 
 class ArticleDetailHandler(BaseHandler):
     def get(self,id):
@@ -263,7 +308,23 @@ class ArticleDetailHandler(BaseHandler):
 
         archives = db.post.aggregate([{'$group': {'_id': "$archive", 'count': {'$sum': 1}}}])
 
-        self.render('blog/article.html',article=article,tags=tags,cateData=cateData,archives=archives,adsData=adsData)
+
+        result = []
+        result2 = []
+        for itme in archives:
+            if itme['_id']:
+                result.append({'date':datetime.datetime.strptime(itme['_id'],'%Y-%m'),'count':itme['count']})
+            else:
+                result2.append({'date':None,'count':itme['count']})
+
+        result.sort(lambda x,y: cmp(x['date'], y['date']))
+        result.reverse()
+        result.extend(result2)
+
+
+        #archives.sort(key=lambda x:x["_id"])
+
+        self.render('blog/article.html',article=article,tags=tags,cateData=cateData,archives=result,adsData=adsData)
 
 class CommentHandler(BaseHandler):
 

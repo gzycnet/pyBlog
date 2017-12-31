@@ -202,9 +202,9 @@ window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="tex
 
         {% for archive in archives %}
 
-        {% if archive['_id'] != None %}
+        {% if archive['date'] != None %}
 
-<p class="well"><a href="/archive/{{ archive['_id'] }}/" class="">{{ archive['_id'] }}({{  archive['count'] }}) </a><p>
+<p class="well"><a href="/archive/{{ archive['date'].strftime('%Y-%m') }}/" class="">{{ archive['date'].strftime('%Y-%m') }}({{  archive['count'] }}) </a><p>
 {% else %}
         <p class="well"><a class="">未归档({{  archive['count'] }}) </a></p>
         {% end %}
