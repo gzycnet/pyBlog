@@ -22,7 +22,7 @@ class BlogHandler(BaseHandler):
         articles = db.post.find().sort("date",-1).limit(20)
 
 
-        tags = db.tags.find().limit(50)
+        tags = db.tags.find().sort('count',-1).limit(50)
         links = db.links.find({'showType':1}).limit(20)
         cateList = db.category.find()
 
@@ -99,7 +99,7 @@ class BlogCategoryHandler(BaseHandler):
 
 
 
-        tags = db.tags.find().limit(50)
+        tags = db.tags.find().sort('count',-1).limit(50)
         links = db.links.find({'showType':1}).limit(20)
         cateList = db.category.find()
 
@@ -172,7 +172,7 @@ class BlogTagsHandler(BaseHandler):
 
 
 
-        tags = db.tags.find().limit(50)
+        tags = db.tags.find().sort('count',-1).limit(50)
         links = db.links.find({'showType':1}).limit(20)
         cateList = db.category.find()
 
@@ -243,7 +243,7 @@ class BlogArchiveHandler(BaseHandler):
 
 
 
-        tags = db.tags.find().limit(50)
+        tags = db.tags.find().sort('count',-1).limit(50)
         links = db.links.find({'showType':1}).limit(20)
         cateList = db.category.find()
 
@@ -286,7 +286,7 @@ class ArticleDetailHandler(BaseHandler):
 
         db.post.update({'_id':ObjectId(id)},{'$set':{'views':count+1}})
 
-        tags = db.tags.find().limit(50)
+        tags = db.tags.find().sort('count',-1).limit(50)
         cateList = db.category.find()
 
 

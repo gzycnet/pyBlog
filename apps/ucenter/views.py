@@ -93,9 +93,15 @@ class PostArticleHandler(BaseHandler):
         for t in tags:
             if t != '':
                 try:
-                    db.tags.insert({'name':t})
+                    db.tags.insert({'name':t,'count':1})
                 except:
-                    pass
+                    item = db.tags.find_one({'name':t})
+                    try:
+                        count = item['count']
+                    except:
+                        count = 0
+                    count += 1
+                    db.tags.update({'name':t},{'$set':{'count':count}},True,0)
 
         #self.render('index.html')
         self.redirect('/ucenter/list')
@@ -193,7 +199,7 @@ class EditArticleHandler(BaseHandler):
                     pass
 
 
-        if article['cate'] == None and cate !='None':
+        if cate !='None':
             t = db.category.find_one(ObjectId(cate))
             newData['cate'] = {'id':ObjectId(cate),'name':t['name']}
 
@@ -203,9 +209,16 @@ class EditArticleHandler(BaseHandler):
             for t in tags:
                 if t != '':
                     try:
-                        db.tags.insert({'name':t})
+                        db.tags.insert({'name':t,'count':1})
                     except:
-                        pass
+                        #pass
+                        item = db.tags.find_one({'name':t})
+                        try:
+                            count = item['count']
+                        except:
+                            count = 0
+                        count += 1
+                        db.tags.update({'name':t},{'$set':{'count':count}},True,0)
 
 
         self.redirect('/ucenter/list')
