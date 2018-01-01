@@ -378,7 +378,10 @@ var _hmt = _hmt || [];
             "@id": "http://zhaoyoucai.com/a/{{ article['_id'] }}/",
             "appid": "1536770007999274",
             "title": "{{ article['title'] }}",
-            "images": [],
+            {% if article.has_key('imgList') and article['imgList'] %}{% if len(article['imgList'])>=3 %}"images": [
+            {% for img in article['imgList'][:3] %}"{% if 'http' not in img %}http://zhaoyoucai.com{{ img }}{% else %}{{ img }}{% end%}",
+            {% end %}],
+            {% else %}"images": ["{% if 'http' not in article['imgList'][0] %}http://zhaoyoucai.com{{ article['imgList'][0] }}{% else %}{{ article['imgList'][0] }}{% end %}"],{% end %}{% else %}"images": [],{% end %}
             "description": "{{ article['description'] }}",
             "pubDate": "{{ article['date'].strftime('%Y-%m-%dT%H:%M:%S') }}",
             "upDate": "{{ article['updateDate'].strftime('%Y-%m-%dT%H:%M:%S') }}"

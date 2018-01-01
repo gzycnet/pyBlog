@@ -77,6 +77,7 @@ class PostArticleHandler(BaseHandler):
             newData['date'] = datetime.datetime.now()
 
 
+
         newData['archive'] = (newData['date']).strftime('%Y-%m')
 
 
@@ -88,6 +89,8 @@ class PostArticleHandler(BaseHandler):
             newData['cate'] = None
             #new_post = {"author":author,"title":title,'content':content,'description':description,'tags':tags,'date':datetime.datetime.now(),'updateDate':datetime.datetime.now(),'status':0,'cate':None,'views':0,'likes':0,'unlikes':0}
 
+
+        newData['imgList'] = self.getImages(content)
         posts.insert(newData)
 
         for t in tags:
@@ -105,6 +108,14 @@ class PostArticleHandler(BaseHandler):
 
         #self.render('index.html')
         self.redirect('/ucenter/list')
+
+
+    def getImages(self,content):
+        import re
+        rule = re.compile(r'<[img|IMG].*?src=[\'|\"](\S*?(?:[\.gif|\.jpg|\.png]))[\'|\"].*?[\/]?>')
+        imgList = re.findall(rule,content)
+
+        return imgList
 
 
 
@@ -146,6 +157,12 @@ class EditArticleHandler(BaseHandler):
             cateList = db.category.find()
             self.render('edit.html',article=article,referer = self.request.path,cateList=cateList,userInfo=userInfo)
 
+    def getImages(self,content):
+        import re
+        rule = re.compile(r'<[img|IMG].*?src=[\'|\"](\S*?(?:[\.gif|\.jpg|\.png]))[\'|\"].*?[\/]?>')
+        imgList = re.findall(rule,content)
+
+        return imgList
 
     @tornado.web.authenticated
     def post(self,*args, **kwargs):
@@ -166,7 +183,7 @@ class EditArticleHandler(BaseHandler):
         mongo.connect()
         client = mongo.client
         db = client.pyblog
-        article = db.post.find_one({'_id':ObjectId(id)})
+        #article = db.post.find_one({'_id':ObjectId(id)})
 
         newData = dict()
 
@@ -203,6 +220,8 @@ class EditArticleHandler(BaseHandler):
             t = db.category.find_one(ObjectId(cate))
             newData['cate'] = {'id':ObjectId(cate),'name':t['name']}
 
+
+        newData['imgList'] = self.getImages(content)
         db.post.update({'_id':ObjectId(id)},{'$set':newData})
 
         if mark >0:
