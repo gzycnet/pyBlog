@@ -8,6 +8,7 @@
         <meta name="viewport" content="width=device-width, user-scalable=0, maximum-scale=1.0,minimum-scale=1.0, initial-scale=1.0">
         
     <title>{{ article['title'] }} - 知而不乎</title>
+    <link rel="canonical" href="http://zhaoyoucai.com/a/{{ article['_id'] }}/"/>
 
         <!-- Bootstrap -->
         
@@ -23,6 +24,7 @@
         <script src="http://static.zhaoyoucai.com/static/blog/js/jquery.min.js"></script>
         <script src="http://static.zhaoyoucai.com/static/blog/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="http://static.zhaoyoucai.com/static/blog/js/main.js"></script>
+    <script src="//msite.baidu.com/sdk/c.js?appid=1536770007999274"></script>
     
     
     <style>
@@ -31,6 +33,7 @@
     </style>
     </head>
     <body>
+    <script>cambrian.render('head')</script>
 		<!-- 上方导航栏 -->
 		<!-- 上方导航栏结束 -->
 				<!-- 关于我 -->
@@ -115,17 +118,7 @@
     </div>
     
 
-    <div class="changyan">
-    <!--PC和WAP自适应版-->
-<div id="SOHUCS" sid="blog_5" ></div>
-<script type="text/javascript">
-(function(){
-var appid = 'cyrP8G5FP';
-var conf = 'prod_92f6b8609bcd4f282a33a7866500330c';
-var width = window.innerWidth || document.documentElement.clientWidth;
-if (width < 960) {
-window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="http://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("http://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
-    </div>
+
 <div class="blank10" style="height: 20px;"></div>
     <div class="ads" style="min-height:280px;">
     <div class="adsLeft" style="width: 50%;float: left;">
@@ -378,5 +371,18 @@ var _hmt = _hmt || [];
     s.parentNode.insertBefore(bp, s);
 })();
 </script>
+
+    <script type="application/ld+json">
+        {
+            "@context": "https://ziyuan.baidu.com/contexts/cambrian.jsonld",
+            "@id": "http://zhaoyoucai.com/a/{{ article['_id'] }}/",
+            "appid": "1536770007999274",
+            "title": "{{ article['title'] }}",
+            "images": [],
+            "description": "{{ article['description'] }}",
+            "pubDate": "{{ article['date'].strftime('%Y-%m-%dT%H:%M:%S') }}",
+            "upDate": "{{ article['updateDate'].strftime('%Y-%m-%dT%H:%M:%S') }}"
+        }
+    </script>
 
 </body></html>
