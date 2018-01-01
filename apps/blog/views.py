@@ -15,11 +15,16 @@ from bson import ObjectId
 class BlogHandler(BaseHandler):
     def get(self):
 
+
+
         mongo = MongoCase()
         mongo.connect()
         client = mongo.client
         db = client.pyblog
+
+
         articles = db.post.find().sort("date",-1).limit(20)
+
 
 
         tags = db.tags.find().sort('count',-1).limit(50)
@@ -50,7 +55,7 @@ class BlogHandler(BaseHandler):
         result.extend(result2)
 
 
-        self.render('blog/index.html',articles=articles,tags=tags,cateData=cateData,archives=result,links=links)
+        self.render('blog/index.html',articles=articles,tags=tags,cateData=cateData,pageInfo=None,archives=result,links=links)
 
         #self.render('index.html')
 

@@ -116,22 +116,26 @@
     {% end %}
     
 
+    {% if pageInfo %}
         
     <ul class="pagination">
     
     <li class="disabled"><span aria-hidden="true">&laquo;</span></li>
-        
-    
 
-<li class="active"><a href="#">1<span class="sr-only">(current)</span></a></li>
+    {% for p in pageInfo['pageList'] %}
+        {% if p==pageInfo['pageNo'] %}
+        <li class="active"><a >{{ p }}<span class="sr-only">(current)</span></a></li>
+        {% else %}
+        <li><a href="?page={{ p }}">{{ p }}</a></li>
+        {% end %}
+    {% end %}
 
+        <li class="disabled"><span aria-hidden="true">&raquo;</span></li>
 
-    
-        <li class="disabled">
-        <span aria-hidden="true">&raquo;</span>
-    </li>
-    
-  </ul>
+         </ul>
+
+    {% end %}
+
     
             </div>
 <div class="ads">
